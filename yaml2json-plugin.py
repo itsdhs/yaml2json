@@ -1,11 +1,11 @@
 import sublime, sublime_plugin, subprocess
 import os, sys
 
-EXE_PATH = "./yaml2json.py"
+BASE_CMD = "python bin/yaml2json.py"
 
 class YamlToJsonCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
-		result, err = exe("%s" % EXE_PATH,
+		result, err = exe("%s" % BASE_CMD,
 			self.view.substr(self.view.sel()[0]).encode('utf-8'))
 
 		if len(err) != 0:
@@ -21,7 +21,7 @@ class YamlToJsonCommand(sublime_plugin.TextCommand):
 
 class JsonToYamlCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
-		result, err = exe("%s --reverse" % EXE_PATH,
+		result, err = exe("%s --reverse" % BASE_CMD,
 			self.view.substr(self.view.sel()[0]).encode('utf-8'))
 
 		if len(err) != 0:
